@@ -1,0 +1,81 @@
+<html>
+
+
+<head>
+<meta name="google-site-verification" content="2QLKtDFPPQwFab4Tx2Gf0TJ1SVMI1lSA4VfKsA90SaY" /> <!-- ssshhh... -->
+<title>Dwarfism 2.0</title>
+<link rel="stylesheet" type="text/css" href="/css/global.css" />
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+<meta name="msvalidate.01" content="864046E07A1B992B74A4682F7D3CCD7E" />
+</head>
+<div id="container">
+<body>
+<div id="header">
+    <h1>Dwarfism 2.0</h1> <br>
+    <h2>A subsection of <a href="https://imagen.click">Imagen Dot Click</a></h2>
+<h4> <a href="https://github.com/gidoBOSSftw5731/dwarfism-2.0">See the code!</h4></a>
+</div>
+<div id="form">
+    
+<form action="{{.URLPrefix}}dform/" method="post" id="uploadform">
+    <div class="loggedout">
+    To make a custom output URL, <a href="/login">login here!</a> <br>
+    </div>
+    URL: <input type="text" id="lURL" name="lURL"><br>
+    <div class="loggedin"> Custom Short URL: <input type="text" id="sURL" name="sURL"><br>
+    </div>
+	<div id="submit">
+        <div id="submit">
+            <button class="g-recaptcha" data-sitekey="{{.CaptchaPub}}" data-callback='onSubmit'>Shrink!</button>
+        </div>   
+        </div>
+    </form>
+</div>
+    
+<div id="footer">
+        <a href="{{.URLPrefix}}"> Home Page </a>&nbsp;&nbsp;  <a class='loggedout' href="/login"> Log In </a>&nbsp;&nbsp;  <a class='loggedin' href="/logout"> Log Out </a>&nbsp;&nbsp;<a href="directory"> Directory </a>
+</div>
+
+
+<script>
+    function onSubmit(token) {
+      document.getElementById("uploadform").submit();
+    }
+  </script>
+
+<script>
+        var sessval = httpGet( "/verifysession" );
+    
+        if (sessval.includes("true") ) {
+            hide(document.querySelectorAll('.loggedout'));
+            //show(documents.querySelectorAll('#loggedin'));
+        } else {
+            hide(document.querySelectorAll('.loggedin'));
+        }
+    
+        function httpGet(theUrl)
+        {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+            xmlHttp.send( null );
+            return xmlHttp.responseText;
+        }
+    
+        function hide (elements) {
+            elements = elements.length ? elements : [elements];
+            for (var index = 0; index < elements.length; index++) {
+                elements[index].style.display = 'none';
+            }
+        }
+    
+      function show (elements, specifiedDisplay) {
+        elements = elements.length ? elements : [elements];
+        for (var index = 0; index < elements.length; index++) {
+            elements[index].style.display = specifiedDisplay || 'block';
+        }
+    }
+    </script>
+
+</body>
+</div>
+</html>
