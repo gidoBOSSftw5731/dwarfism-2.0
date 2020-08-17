@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	allowedChars = "!-123456789ABCDEFGHJKLMNOPRSTUVWXYZ_abcdefghijkmnopqrstuvwxyz" // 61 chars
+	allowedChars = "-123456789ABCDEFGHJKLMNOPRSTUVWXYZ_abcdefghijkmnopqrstuvwxyz" // 60 chars
 )
 
 type userInfo struct {
@@ -132,8 +132,8 @@ func ShortResp(resp http.ResponseWriter, req *http.Request, config tools.Config)
 		rand.Seed(time.Now().UnixNano())
 		allowedCharsSplit := strings.Split(allowedChars, "")
 		for i := 0; i < 6; i++ {
-			x = rand.Intn(len(allowedChars)-0-1) + 0 // Not helpful name, but this generates a randon number from 0 to 84 to locate what we need for the session
-			shortURL += allowedCharsSplit[x]         // Using x to navigate the split for one character
+			x = rand.Intn(len(allowedChars) - 1) // Not helpful name, but this generates a randon number from 0 to 84 to locate what we need for the session
+			shortURL += allowedCharsSplit[x]     // Using x to navigate the split for one character
 		}
 	}
 
